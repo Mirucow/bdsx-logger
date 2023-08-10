@@ -19,6 +19,8 @@ player.sendMessage(`${MCTextFormat.Green}Hello World`);
 ```
 
 ```sh
+Console
+
 [Prefix] Hello World <- Green color
 ```
 
