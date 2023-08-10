@@ -204,6 +204,3 @@ export enum MCTextFormat {
   Italic = "§o",
   Reset = "§r"
 }
-
-const a = new Logger("plugin");
-a.info("Hello", TextFormat.BrightRed);
