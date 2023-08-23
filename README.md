@@ -18,9 +18,11 @@ logger.info("Hello World", TextFormat.Green);
 player.sendMessage(`${MCTextFormat.Green}Hello World`);
 ```
 
-<div style="background-color: black;">
-  <span style="color: white;">[Prefix]</span> <span style="color: green;">Hello World</span>
-</div>
+```sh
+Console
+
+[Prefix] Hello World <- Green color
+```
 
 ## Future
 
