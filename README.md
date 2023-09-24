@@ -1,129 +1,68 @@
 # bdsx-logger
 
-Logger plugin for bdsx.
 
-## How to use
+Simple logger plugin for bdsx.
 
-1. Import Logger class from this plugin.
-2. construct Logger class.
-3. You can do logging easily now!
+
+
+## features
+
+
+- Logging with various color
+- Support in game logging
+
+
+
+## How to
+
+
+### Import class `Logger`
 
 ```ts
-import { Logger, TextFormat, MCTextFormat } from "@bdsx/bdsx-logger";
+import { Logger, TextFormat } from "@bdsx/bdsx-logger";
+
 
 const logger = new Logger("Prefix");
-
-logger.info("Hello World", TextFormat.Green);
-
-player.sendMessage(`${MCTextFormat.Green}Hello World`);
 ```
 
-```sh
-Console
-
-[Prefix] Hello World <- Green color
-```
-
-## Future
-
-### Loging text with format
+### Just have fun with logging!!
 
 ```ts
-const logger = new Logger("Prefix");
+logger.log("Green", TextFormat.Green);
+logger.error("Red");
+logger.warn("Yellow");
 
-logger.info("This is Blue", TextFormat.Blue);
-logger.error("This is Red");
-logger.warn("This is Yellow");
+events.playerJoin.on((ev) => {
+  const pl = ev.player;
+  logger.mcLog("Send", pl);
+  logger.mcError("to", pl);
+  logger.mcWarn("player", pl);
+});
+
+logger.mcBroadCast("Send");
+logger.mcBroadCastError("to");
+logger.mcBroadCastWarn("all players");
 ```
 
+
+
+## Advanced options
+
+
+### default color
+
 ```ts
-enum TextFormat {
-    Black,
-    Red,
-    Green,
-    Yellow,
-    Blue,
-    Magenta,
-    Cyan,
-    White,
-    Gray,
-    Grey,
-
-    BrightRed,
-    BrightGreen,
-    BrightYellow,
-    BrightBlue,
-    BrightMagenta,
-    BrightCyan,
-    BrightWhite,
-
-    BgBlack,
-    BgRed,
-    BgGreen,
-    BgYellow,
-    BgBlue,
-    BgMagenta,
-    BgCyan,
-    BgWhite,
-
-    Reset,
-    Bold, // Not supported
-    Dim, // Not supported
-    Italic, // Not supported
-    Underline,
-    Inverse,
-    Hidden, // Not supported
-    Strikethrough, // Not supported
-
-    Rainbow,
-    Zebra,
-    America,
-    Trap,
-    Random,
-    Zalgo,
-}
+const logger = new Logger("Prefix", {
+  prefixColor: TextFormat.BrightMagenta,
+  prefixMCColor: MCTextFormat.MaterialAmethyst,
+  defaultColor: TextFormat.Rainbow,
+  defaultMCColor: MCTextFormat.MaterialNetherite
+});
 ```
 
-### Send message with format
+
+### broadcast to selected players
 
 ```ts
-const message = `${MCTextFormat.Aqua}This is Aqua`;
-```
-
-```ts
-enum MCTextFormat {
-    Black = "§0",
-    DarkBlue = "§1",
-    DarkGreen = "§2",
-    DarkAqua = "§3",
-    DarkRed = "§4",
-    DarkPurple = "§5",
-    Gold = "§6",
-    Gray = "§7",
-    DarkGray = "§8",
-    Blue = "§9",
-    Green = "§a",
-    Aqua = "§b",
-    Red = "§c",
-    LightPurple = "§d",
-    Yellow = "§e",
-    White = "§f",
-
-    MinecoinGold = "§g",
-    MaterialQuartz = "§h",
-    MaterialIron = "§i",
-    MaterialNetherite = "§j",
-    MaterialRedstone = "§m",
-    MaterialCopper = "§n",
-    MaterialGold = "§p",
-    MaterialEmerald = "§q",
-    MaterialDiamond = "§s",
-    MaterialLapis = "§t",
-    MaterialAmethyst = "§u",
-
-    Obfuscated = "§k",
-    Bold = "§l",
-    Italic = "§o",
-    Reset = "§r",
-}
+logger.mcBroadCast("broadcast", TextFormat.Rainbow, [player1, player2]);
 ```
