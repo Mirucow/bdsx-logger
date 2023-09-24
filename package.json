@@ -1,6 +1,6 @@
 {
     "name": "@bdsx/bdsx-logger",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Logger plugin for bdsx.",
     "main": "index.js",
     "keywords": [],
